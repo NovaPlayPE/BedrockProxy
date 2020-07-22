@@ -1,5 +1,6 @@
 package eu.czechpmdevs.bedrockproxy;
 
+import eu.czechpmdevs.bedrockproxy.console.Console;
 import eu.czechpmdevs.bedrockproxy.utils.Logger;
 import lombok.Getter;
 
@@ -11,11 +12,14 @@ public class ProxyServer {
     private boolean isRunning = true;
 
     @Getter
-    private final Logger logger;
+    private Logger logger;
+    @Getter
+    private Console console;
 
     public ProxyServer(Logger logger) {
         this.logger = logger;
         this.loadConfiguration();
+        this.start();
 
         this.getLogger().info(this.getName() + " started in " + Math.round(System.currentTimeMillis() - BedrockProxy.START_TIME) + " seconds!");
         this.tickProcessor();
@@ -28,6 +32,10 @@ public class ProxyServer {
         }
     }
 
+    private void start() {
+        this.console = new Console(this);
+    }
+
     private void tickProcessor() {
         while (this.isRunning()) {
             this.tick();
@@ -35,7 +43,7 @@ public class ProxyServer {
     }
 
     private void tick() {
-
+        this.getConsole().tick();
     }
 
     public void shutdown() {

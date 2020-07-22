@@ -1,6 +1,7 @@
 package eu.czechpmdevs.bedrockproxy;
 
 import eu.czechpmdevs.bedrockproxy.utils.Logger;
+import org.fusesource.jansi.AnsiConsole;
 
 public class BedrockProxy {
 
@@ -20,6 +21,7 @@ public class BedrockProxy {
         catch (Exception e) {
             logger.error("Error while running ProxyServer class, shutting down server");
             e.printStackTrace();
+            AnsiConsole.systemInstall();
         }
     }
 }

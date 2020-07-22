@@ -12,11 +12,11 @@ public class Logger {
     }
 
     public void info(String text) {
-        System.out.println(TextFormat.colorize("§b[" + this.getTime() + "] §3[Info] §f" + text));
+        System.out.println(TextFormat.colorize("§b[" + this.getTime() + "] §3[Info] §f" + text + "§r"));
     }
 
     public void error(String text) {
-        System.out.println(TextFormat.colorize("§b[" + this.getTime() + "] §4[Error] §c" + text));
+        System.out.println(TextFormat.colorize("§b[" + this.getTime() + "] §4[Error] §c" + text + "§r"));
     }
 
     private String getTime() {

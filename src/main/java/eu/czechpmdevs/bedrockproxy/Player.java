@@ -1,8 +1,9 @@
 package eu.czechpmdevs.bedrockproxy;
 
+import eu.czechpmdevs.bedrockproxy.console.CommandSender;
 import lombok.Getter;
 
-public class Player {
+public class Player implements CommandSender {
 
     @Getter
     private final ProxyServer proxy;
@@ -14,5 +15,9 @@ public class Player {
         this.proxy = proxy;
 
         this.name = name;
+    }
+
+    public void sendMessage(String message) {
+        // TODO - Implement sendMessage menthod
     }
 }
