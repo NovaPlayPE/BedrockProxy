@@ -24,4 +24,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: artifacts
-        path: target/*
+        path: target/BedrockProxy-1.0-SNAPSHOT.jar
