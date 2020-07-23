@@ -3,12 +3,13 @@ package eu.czechpmdevs.bedrockproxy.console.commands;
 import eu.czechpmdevs.bedrockproxy.console.Command;
 import eu.czechpmdevs.bedrockproxy.console.CommandMap;
 import eu.czechpmdevs.bedrockproxy.console.CommandSender;
+import eu.czechpmdevs.bedrockproxy.console.ConsoleCommandSender;
 import lombok.Getter;
 
 public class HelpCommand implements Command {
 
     @Getter
-    private CommandMap commandMap;
+    private final CommandMap commandMap;
 
     public HelpCommand(CommandMap commandMap) {
         this.commandMap = commandMap;
@@ -16,11 +17,12 @@ public class HelpCommand implements Command {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        sender.sendMessage("§f--- Showing help page 1/1 ---");
-        for(Command command : this.getCommandMap().getCommands().values()) {
-            sender.sendMessage("§2/" + command.getName() + " §f" + command.getDescription());
+        if(sender instanceof ConsoleCommandSender) {
+            sender.sendMessage("§f--- Showing help page 1/1 ---");
+            for(Command command : this.getCommandMap().getCommands().values()) {
+                sender.sendMessage("§2/" + command.getName() + " §f" + command.getDescription());
+            }
         }
-        sender.sendMessage("§f--- Displayed " + this.getCommandMap().getCommands().size() + " commands. ---");
     }
 
     @Override
@@ -30,6 +32,6 @@ public class HelpCommand implements Command {
 
     @Override
     public String getDescription() {
-        return "Show all available commands";
+        return "Displays all available commands";
     }
 }

@@ -35,6 +35,6 @@ public class Console {
             return;
         }
 
-        this.commandMap.executeCommand(this.sender, commandLine);
+        this.getCommandMap().executeCommand(this.sender, commandLine);
     }
 }

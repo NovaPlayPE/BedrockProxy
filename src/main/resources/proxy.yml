@@ -1,0 +1,21 @@
+---
+# BedrockProxy configuration file.
+# This configuration can be reloaded while the proxy is running.
+
+# Max players
+max-players: 50
+
+# Servers configuration
+servers:
+  Lobby-1:
+    default: true # Proxy will connect players to this server when join
+    open: true # If isn't open, only op players will be able to join
+    address: localhost:1001
+  Survival:
+    default: false
+    open: true
+    address: loacalhost:1002
+
+# Proxy will connect player to the same server after re-log
+save-locations: false
+...

@@ -14,4 +14,8 @@ public class ConsoleCommandSender implements CommandSender {
     public void sendMessage(String message) {
         this.getConsole().getProxy().getLogger().info(message);
     }
+
+    public boolean isOp() {
+        return true;
+    }
 }

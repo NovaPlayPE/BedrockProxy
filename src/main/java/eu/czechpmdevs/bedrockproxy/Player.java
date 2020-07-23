@@ -17,7 +17,13 @@ public class Player implements CommandSender {
         this.name = name;
     }
 
+    @Override
     public void sendMessage(String message) {
         // TODO - Implement sendMessage menthod
+    }
+
+    @Override
+    public boolean isOp() {
+        return false;
     }
 }

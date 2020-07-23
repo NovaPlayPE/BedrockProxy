@@ -1,9 +1,9 @@
 package eu.czechpmdevs.bedrockproxy.console;
 
 import eu.czechpmdevs.bedrockproxy.console.commands.HelpCommand;
+import eu.czechpmdevs.bedrockproxy.console.commands.VersionCommand;
 import lombok.Getter;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +22,7 @@ public class CommandMap {
 
     public void registerDefaults() {
         this.registerCommand(new HelpCommand(this));
+        this.registerCommand(new VersionCommand(this));
     }
 
     public void registerCommand(Command command) {

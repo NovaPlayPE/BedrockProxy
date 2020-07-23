@@ -13,15 +13,16 @@ public class BedrockProxy {
     public static final long START_TIME = System.currentTimeMillis();
 
     public static void main(String[] args) {
+        AnsiConsole.systemInstall();
         Logger logger = new Logger();
 
         try {
             new ProxyServer(logger);
         }
         catch (Exception e) {
-            logger.error("Error while running ProxyServer class, shutting down server");
-            e.printStackTrace();
-            AnsiConsole.systemInstall();
+            logger.logException(e);
         }
+
+        AnsiConsole.systemUninstall();
     }
 }
