@@ -20,8 +20,9 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - run: mkdir -p ./out/lib && cp -r ./target/lib/* ./out/lib/ && cp ./target/BedrockProxy-1.0-SNAPSHOT.jar ./out/
     - name: Archive production artifacts
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
-        name: artifacts
-        path: target/BedrockProxy-1.0-SNAPSHOT.jar
+        name: BedrockProxy-1.0-SNAPSHOT.jar
+        path: ./out/
