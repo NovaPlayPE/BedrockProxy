@@ -131,7 +131,7 @@ public class Config {
 
     private void parseYaml(String content) {
         Yaml yaml = new Yaml();
-        this.setAll((Map<Object, Object>) yaml.load(content));
+        this.setAll(yaml.load(content));
     }
 
     public Map<Object, Object> getAll() {

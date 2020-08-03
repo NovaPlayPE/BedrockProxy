@@ -14,6 +14,7 @@ public class BedrockProxy {
 
     public static void main(String[] args) {
         AnsiConsole.systemInstall();
+        Thread.currentThread().setName("Main thread");
         Logger logger = new Logger();
 
         try {

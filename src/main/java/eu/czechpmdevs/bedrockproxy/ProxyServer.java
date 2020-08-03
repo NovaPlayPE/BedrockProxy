@@ -1,6 +1,8 @@
 package eu.czechpmdevs.bedrockproxy;
 
 import eu.czechpmdevs.bedrockproxy.console.Console;
+import eu.czechpmdevs.bedrockproxy.network.Network;
+import eu.czechpmdevs.bedrockproxy.server.ServerManager;
 import eu.czechpmdevs.bedrockproxy.utils.Config;
 import eu.czechpmdevs.bedrockproxy.utils.Logger;
 import eu.czechpmdevs.bedrockproxy.utils.Utils;
@@ -9,6 +11,7 @@ import lombok.Getter;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ProxyServer {
@@ -20,9 +23,14 @@ public class ProxyServer {
     private boolean isRunning = true;
 
     @Getter
-    private Logger logger;
+    private final Logger logger;
+
     @Getter
     private Console console;
+    @Getter
+    private ServerManager serverManager;
+    @Getter
+    private Network network;
 
     @Getter
     private String motd;
@@ -32,6 +40,12 @@ public class ProxyServer {
     private int port;
     @Getter
     private boolean isXboxAuthEnabled;
+
+    @Getter
+    private Map<Object, Object> config;
+
+    @Getter
+    private List<Player> players;
 
     public ProxyServer(Logger logger) {
         ProxyServer.instance = this;
@@ -81,12 +95,15 @@ public class ProxyServer {
             Utils.saveResource("proxy.yml");
         }
 
-        Config config = new Config(file, Config.YAML);
-        System.out.println(config.getAll());
+        this.config = new Config(file, Config.YAML).getAll();
     }
 
     private void start() {
         this.console = new Console(this);
+        this.serverManager = new ServerManager(this);
+        this.getServerManager().loadConfiguration((HashMap<String, Object>) this.getConfig().get("servers"));
+
+        this.network = new Network(this);
     }
 
     private void tickProcessor() {
