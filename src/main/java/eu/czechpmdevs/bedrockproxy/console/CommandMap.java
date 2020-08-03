@@ -41,7 +41,7 @@ public class CommandMap {
     public boolean executeCommand(CommandSender sender, String commandLine) {
         String[] split = commandLine.split(" ");
         String alias = split[0];
-        
+
         if(!this.commands.containsKey(alias)) {
             for(Command command : this.commands.values()) {
                 if(command instanceof AliasedCommand) {

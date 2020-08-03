@@ -6,15 +6,15 @@ import java.util.Date;
 public class Logger {
 
     public void info(String text) {
-        System.out.println(TextFormat.colorize("§b[" + this.getTime() + "/" + Thread.currentThread().getName() + "] §3[Info] §f" + text + "§r"));
+        System.out.println(TextFormat.colorize("§e[" + this.getTime() + "] §3[" + Thread.currentThread().getName() + "/Info] §f" + text + "§r"));
     }
 
     public void error(String text) {
-        System.out.println(TextFormat.colorize("§b[" + this.getTime() + "/" + Thread.currentThread().getName() + "] §4[Error] §c" + text + "§r"));
+        System.out.println(TextFormat.colorize("§e[" + this.getTime() +"] §4[" + Thread.currentThread().getName() + "/Error] §c" + text + "§r"));
     }
 
     public void debug(String text) {
-        System.out.println(TextFormat.colorize("§b[" + this.getTime() + "/" + Thread.currentThread().getName() + "] §e[Debug] §f" + text + "§r"));
+        System.out.println(TextFormat.colorize("§e[" + this.getTime() + "] §e[" + Thread.currentThread().getName() + "/Debug] §f" + text + "§r"));
     }
 
     public void logException(Exception exception) {
