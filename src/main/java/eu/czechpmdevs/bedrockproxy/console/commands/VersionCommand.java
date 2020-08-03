@@ -1,12 +1,12 @@
 package eu.czechpmdevs.bedrockproxy.console.commands;
 
 import eu.czechpmdevs.bedrockproxy.BedrockProxy;
-import eu.czechpmdevs.bedrockproxy.console.Command;
+import eu.czechpmdevs.bedrockproxy.console.AliasedCommand;
 import eu.czechpmdevs.bedrockproxy.console.CommandMap;
 import eu.czechpmdevs.bedrockproxy.console.CommandSender;
 import lombok.Getter;
 
-public class VersionCommand implements Command {
+public class VersionCommand implements AliasedCommand {
 
     @Getter
     private final CommandMap commandMap;
@@ -30,5 +30,10 @@ public class VersionCommand implements Command {
     @Override
     public String getDescription() {
         return "Displays proxy server version";
+    }
+
+    @Override
+    public String[] getAliases() {
+        return new String[] {"ver", "about"};
     }
 }

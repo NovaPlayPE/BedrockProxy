@@ -1,12 +1,9 @@
 package eu.czechpmdevs.bedrockproxy.console.commands;
 
-import eu.czechpmdevs.bedrockproxy.console.Command;
-import eu.czechpmdevs.bedrockproxy.console.CommandMap;
-import eu.czechpmdevs.bedrockproxy.console.CommandSender;
-import eu.czechpmdevs.bedrockproxy.console.ConsoleCommandSender;
+import eu.czechpmdevs.bedrockproxy.console.*;
 import lombok.Getter;
 
-public class HelpCommand implements Command {
+public class HelpCommand implements AliasedCommand {
 
     @Getter
     private final CommandMap commandMap;
@@ -33,5 +30,10 @@ public class HelpCommand implements Command {
     @Override
     public String getDescription() {
         return "Displays all available commands";
+    }
+
+    @Override
+    public String[] getAliases() {
+        return new String[] {"?"};
     }
 }

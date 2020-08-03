@@ -4,6 +4,7 @@ import eu.czechpmdevs.bedrockproxy.console.commands.HelpCommand;
 import eu.czechpmdevs.bedrockproxy.console.commands.VersionCommand;
 import lombok.Getter;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,8 +40,20 @@ public class CommandMap {
 
     public boolean executeCommand(CommandSender sender, String commandLine) {
         String[] split = commandLine.split(" ");
-        String name = split[0];
-        if(!this.commands.containsKey(name)) {
+        String alias = split[0];
+        
+        if(!this.commands.containsKey(alias)) {
+            for(Command command : this.commands.values()) {
+                if(command instanceof AliasedCommand) {
+                    if(Arrays.asList(((AliasedCommand) command).getAliases()).contains(alias)) {
+                        alias = command.getName();
+                        break;
+                    }
+                }
+            }
+        }
+
+        if(!this.commands.containsKey(alias)) {
             if(sender instanceof ConsoleCommandSender) { // We won't send it to in-game players. This should be handled by server
                 sender.sendMessage("§cUnknown command. Try 'help' to get list of commands.");
             }
@@ -50,7 +63,7 @@ public class CommandMap {
         String[] args = new String[split.length - 1];
         System.arraycopy(split, 1, args, 0, split.length - 1);
 
-        this.commands.get(name).execute(sender, args);
+        this.commands.get(alias).execute(sender, args);
         return true;
     }
 }
