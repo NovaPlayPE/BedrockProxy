@@ -1,4 +1,4 @@
-package eu.czechpmdevs.bedrockproxy.network.server;
+package eu.czechpmdevs.bedrockproxy.network.connection;
 
 import eu.czechpmdevs.bedrockproxy.utils.Logger;
 import io.netty.bootstrap.Bootstrap;
@@ -55,14 +55,14 @@ public class UDPServerSocket extends ChannelInboundHandlerAdapter {
         this.logger.info("Successfully bound to " + ip + ":" + port + "!");
     }
 
-    public DatagramPacket readPacket() {
-        return this.packets.poll();
-    }
-
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         if(msg instanceof DatagramPacket) {
             this.packets.add((DatagramPacket) msg);
         }
+    }
+
+    public DatagramPacket readPacket() {
+        return this.packets.poll();
     }
 }
