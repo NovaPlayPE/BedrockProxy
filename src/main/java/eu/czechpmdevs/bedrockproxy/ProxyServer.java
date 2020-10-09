@@ -2,6 +2,7 @@ package eu.czechpmdevs.bedrockproxy;
 
 import eu.czechpmdevs.bedrockproxy.console.Console;
 import eu.czechpmdevs.bedrockproxy.network.Network;
+import eu.czechpmdevs.bedrockproxy.player.Player;
 import eu.czechpmdevs.bedrockproxy.server.ServerManager;
 import eu.czechpmdevs.bedrockproxy.utils.Config;
 import eu.czechpmdevs.bedrockproxy.utils.Logger;
@@ -13,6 +14,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ProxyServer {
 
@@ -46,10 +49,16 @@ public class ProxyServer {
 
     @Getter
     private List<Player> players;
+    
+    private ExecutorService pool = Executors.newCachedThreadPool();
+	private ExecutorService synchronizedPool = Executors.newSingleThreadExecutor();
 
     public ProxyServer(Logger logger) {
         ProxyServer.instance = this;
         this.logger = logger;
+        Runtime.getRuntime().addShutdownHook(new Thread(()-> {}));
+        Thread.currentThread().setName("BedrockProxy");
+        
         this.loadProperties();
         this.loadConfiguration();
         this.start();

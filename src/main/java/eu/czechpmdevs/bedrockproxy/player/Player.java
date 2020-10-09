@@ -1,5 +1,6 @@
-package eu.czechpmdevs.bedrockproxy;
+package eu.czechpmdevs.bedrockproxy.player;
 
+import eu.czechpmdevs.bedrockproxy.ProxyServer;
 import eu.czechpmdevs.bedrockproxy.console.CommandSender;
 import lombok.Getter;
 
@@ -9,12 +10,12 @@ public class Player implements CommandSender {
     private final ProxyServer proxy;
 
     @Getter
-    protected String name;
+    protected PlayerInfo playerInfo;
 
-    public Player(ProxyServer proxy, String name) {
+    public Player(ProxyServer proxy, PlayerInfo info) {
         this.proxy = proxy;
 
-        this.name = name;
+        this.playerInfo = info;
     }
 
     @Override

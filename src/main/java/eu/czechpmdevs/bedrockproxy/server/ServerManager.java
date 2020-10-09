@@ -1,6 +1,6 @@
 package eu.czechpmdevs.bedrockproxy.server;
 
-import eu.czechpmdevs.bedrockproxy.Player;
+import eu.czechpmdevs.bedrockproxy.player.Player;
 import eu.czechpmdevs.bedrockproxy.ProxyServer;
 import eu.czechpmdevs.bedrockproxy.utils.InternetAddress;
 import lombok.Getter;
