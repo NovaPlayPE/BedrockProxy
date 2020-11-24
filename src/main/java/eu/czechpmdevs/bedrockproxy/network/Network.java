@@ -2,23 +2,25 @@ package eu.czechpmdevs.bedrockproxy.network;
 
 import eu.czechpmdevs.bedrockproxy.ProxyServer;
 import eu.czechpmdevs.bedrockproxy.network.connection.DownstreamConnection;
+import eu.czechpmdevs.bedrockproxy.network.game.GameNetworkManager;
 import lombok.Getter;
 
 public class Network {
 
     @Getter
     private final ProxyServer proxy;
-
-    private final DownstreamConnection downstreamConnection;
+    
+    @Getter
+    public NetworkManager gameNetworkManager;
 
     public Network(ProxyServer proxy) {
         this.proxy = proxy;
-
-        this.downstreamConnection = new DownstreamConnection(this.getProxy().getIp(), this.getProxy().getPort());
-        this.downstreamConnection.start();
+        
+        this.gameNetworkManager = new GameNetworkManager(this);
+        this.gameNetworkManager.start();
     }
-
-    public void tick() {
+    
+    public void close() {
+    	this.gameNetworkManager.stop();
     }
-
 }
