@@ -12,12 +12,17 @@ public class Network {
     
     @Getter
     public NetworkManager gameNetworkManager;
+    
+    @Getter
+    public SessionManager sessionManager;
 
     public Network(ProxyServer proxy) {
         this.proxy = proxy;
         
         this.gameNetworkManager = new GameNetworkManager(this);
         this.gameNetworkManager.start();
+        
+        this.sessionManager = new SessionManager(this);
     }
     
     public void close() {

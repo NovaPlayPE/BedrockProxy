@@ -1,10 +1,13 @@
 package eu.czechpmdevs.bedrockproxy.network.connection;
 
+import java.net.InetSocketAddress;
+
 import eu.czechpmdevs.bedrockproxy.utils.Logger;
 import io.netty.channel.socket.DatagramPacket;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import net.novatech.jbprotocol.ServerConnectInfo;
 
 public class DownstreamConnection extends Thread {
 
@@ -22,6 +25,10 @@ public class DownstreamConnection extends Thread {
     public DownstreamConnection(String ip, int port) {
         this.ip = ip;
         this.port = port;
+    }
+    
+    public ServerConnectInfo toServerInfo() {
+    	return new ServerConnectInfo(new InetSocketAddress(ip, port));
     }
 
     @Override
