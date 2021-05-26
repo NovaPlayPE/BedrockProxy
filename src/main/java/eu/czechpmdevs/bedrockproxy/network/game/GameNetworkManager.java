@@ -9,10 +9,10 @@ import eu.czechpmdevs.bedrockproxy.network.NetworkManager;
 import eu.czechpmdevs.bedrockproxy.utils.TextFormat;
 import lombok.Getter;
 import net.novatech.jbprotocol.GameSession;
-import net.novatech.jbprotocol.GameVersion;
+import net.novatech.jbprotocol.GameEdition;
 import net.novatech.jbprotocol.ProtocolServer;
 import net.novatech.jbprotocol.bedrock.BedrockSession;
-import net.novatech.jbprotocol.listener.LoginListener;
+import net.novatech.jbprotocol.listener.LoginServerListener;
 import net.novatech.jbprotocol.listener.ServerListener;
 import net.novatech.jbprotocol.util.SessionData;
 
@@ -28,14 +28,14 @@ public class GameNetworkManager implements NetworkManager{
 	
 	public void start() {
 		pool.execute(() -> {
-			ProtocolServer server = new ProtocolServer(new InetSocketAddress(this.network.getProxy().getIp(), this.network.getProxy().getPort()), GameVersion.BEDROCK);
+			ProtocolServer server = new ProtocolServer(new InetSocketAddress(this.network.getProxy().getIp(), this.network.getProxy().getPort()), GameEdition.BEDROCK);
 			server.setServerListener(new ServerListener() {
 
 				@Override
 				public void sessionConnected(GameSession session) {
 					BedrockSession ses = (BedrockSession) session;
 					ses.requireAuthentication(network.getProxy().isXboxAuthEnabled());
-					ses.setLoginListener(new LoginListener() {
+					ses.setLoginListener(new LoginServerListener() {
 
 						@Override
 						public void loginCompleted(SessionData data) {
