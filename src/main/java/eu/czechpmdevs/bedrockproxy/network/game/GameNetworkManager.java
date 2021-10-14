@@ -12,9 +12,10 @@ import net.novatech.jbprotocol.GameSession;
 import net.novatech.jbprotocol.GameEdition;
 import net.novatech.jbprotocol.ProtocolServer;
 import net.novatech.jbprotocol.bedrock.BedrockSession;
+import net.novatech.jbprotocol.data.Pong;
+import net.novatech.jbprotocol.data.SessionData;
 import net.novatech.jbprotocol.listener.LoginServerListener;
 import net.novatech.jbprotocol.listener.ServerListener;
-import net.novatech.jbprotocol.util.SessionData;
 
 public class GameNetworkManager implements NetworkManager{
 	
@@ -48,6 +49,11 @@ public class GameNetworkManager implements NetworkManager{
 
 				@Override
 				public void sessionDisconnected(GameSession session, String cause) {
+					
+				}
+
+				@Override
+				public void handlePong(Pong pong) {
 					
 				}
 				
