@@ -7,7 +7,7 @@ import io.netty.channel.socket.DatagramPacket;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import net.novatech.jbprotocol.ServerConnectInfo;
+import net.novatech.jbprotocol.util.ServerConnectInfo;
 
 public class DownstreamConnection extends Thread {
 
